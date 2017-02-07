@@ -25,18 +25,18 @@ namespace Sandbox.Tests
 
             Assert.AreEqual("HEY", myString);
         }
-    }
 
-    public class ImmutablePerson
-    {
-        // Can't touch this (na na na na)
-        public string Name { get; }
-        public int Age { get; }
-
-        public ImmutablePerson(string name, int age)
+        private class Person
         {
-            Name = name;
-            Age = age;
+            // Can't touch this (na na na na)
+            public string Name { get; }
+            public int Age { get; }
+
+            public Person(string name, int age)
+            {
+                Name = name;
+                Age = age;
+            }
         }
     }
 }

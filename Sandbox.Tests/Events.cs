@@ -6,50 +6,51 @@ namespace Sandbox.Tests
     [TestClass]
     public class Events
     {
+        private delegate void NameChanged(object sender, NameChangedEventArgs args);
+
         [TestMethod]
         public void EventTest()
         {
             bool eventRaised = false;
 
-            Dog dog = new Dog();
+            Person person = new Person();
 
             // Events can only have methods added/removed from them, so you can't null it out like a raw delegate.
-            dog.DogNameChanged += delegate { eventRaised = true; };
+            person.NameChanged += delegate { eventRaised = true; };
         
-            dog.Name = "Poop";
+            person.Name = "Poop";
 
             Assert.IsTrue(eventRaised);
         }
-    }
 
-    public delegate void DogNameChanged(object sender, DogNameChangedEventArgs args);
-
-    public class DogNameChangedEventArgs : EventArgs
-    {
-        public string OldName { get; set; }
-        public string NewName { get; set; }
-
-        public DogNameChangedEventArgs(string oldName, string newName)
+        private class Person
         {
-            OldName = oldName;
-            NewName = newName;
-        }
-    }
+            // public event DogNameChanged DogNameChanged;
+            public event EventHandler<NameChangedEventArgs> NameChanged;
 
-    public class Dog
-    {
-        public event DogNameChanged DogNameChanged;
+            private string _name;
 
-        private string _name;
-
-        public string Name
-        {
-            get { return _name; }
-            set
+            public string Name
             {
-                DogNameChanged(this, new DogNameChangedEventArgs(_name, value));
+                get { return _name; }
+                set
+                {
+                    NameChanged(this, new NameChangedEventArgs(_name, value)); // Or DogNameChanged?.Invoke(...)
 
-                _name = value;
+                    _name = value;
+                }
+            }
+        }
+
+        private class NameChangedEventArgs : EventArgs
+        {
+            public string OldName { get; set; }
+            public string NewName { get; set; }
+
+            public NameChangedEventArgs(string oldName, string newName)
+            {
+                OldName = oldName;
+                NewName = newName;
             }
         }
     }

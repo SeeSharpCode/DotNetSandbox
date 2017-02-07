@@ -2,6 +2,11 @@
 
 namespace Sandbox.Tests
 {
+    // A delegate is a placeholder for a method(s).
+    // By defining a delegate, you are saying to the user of your class, "Please feel free to assign any method that matches this signature to the delegate and it will be called each time my delegate is called".
+    // Delegates can be declared outside of a class because delegates are types.
+    public delegate void NameChangedDelegate(string existingName, string newName);
+
     [TestClass]
     public class Delegates
     {
@@ -10,40 +15,36 @@ namespace Sandbox.Tests
         {
             bool delegateCalled = false;
 
-            Book book = new Book();
+            Person person = new Person();
 
             // Using += adds methods to the delegate instead of replacing the method assigned to the delegate.
-            book.NameChanged += delegate { delegateCalled = true; };
+            person.NameChanged += delegate { delegateCalled = true; };
 
-            book.Name = "New Name";
+            person.Name = "New Name";
 
             Assert.IsTrue(delegateCalled);
         }
-    }
 
-    // A delegate is a placeholder for a method(s).
-    // By defining a delegate, you are saying to the user of your class, "Please feel free to assign any method that matches this signature to the delegate and it will be called each time my delegate is called".
-    public delegate void BookNameChangedDelegate(string existingName, string newName);
-    
-    public class Book
-    {
-        public BookNameChangedDelegate NameChanged;
-
-        private string _name;
-
-        public string Name
+        private class Person
         {
-            get { return _name; }
-            set
+            public NameChangedDelegate NameChanged;
+
+            private string _name;
+
+            public string Name
             {
-                NameChanged(_name, value);
-                _name = value;
+                get { return _name; }
+                set
+                {
+                    NameChanged(_name, value);
+                    _name = value;
+                }
             }
-        }
 
-        public Book()
-        {
-            _name = "Empty";
+            public Person()
+            {
+                _name = "Empty";
+            }
         }
     }
 }

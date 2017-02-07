@@ -57,6 +57,11 @@
     <Compile Include="Immutability.cs" />
     <Compile Include="Delegates.cs" />
     <Compile Include="Events.cs" />
+    <Compile Include="AnonymousMethodsAndLambdas.cs" />
+    <Compile Include="Inheritance.cs" />
+    <Compile Include="Abstract.cs" />
+    <Compile Include="DelegateTypes.cs" />
+    <Compile Include="Generics.cs" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

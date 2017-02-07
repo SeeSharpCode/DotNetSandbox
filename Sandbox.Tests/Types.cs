@@ -54,10 +54,10 @@ namespace Sandbox.Tests
             person = new Person();
             person.Age = 5;
         }
-    }
 
-    public class Person
-    {
-        public int Age { get; set; }
+        private class Person
+        {
+            public int Age { get; set; }
+        }
     }
 }
