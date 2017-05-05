@@ -62,6 +62,8 @@
     <Compile Include="Abstract.cs" />
     <Compile Include="DelegateTypes.cs" />
     <Compile Include="Generics.cs" />
+    <Compile Include="EasyChallenges.cs" />
+    <Compile Include="Async.cs" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
