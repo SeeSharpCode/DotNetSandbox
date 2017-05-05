@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Threading;
 
 namespace Sandbox.Tests
 {
@@ -18,8 +17,6 @@ namespace Sandbox.Tests
         private string ReturnToString<T>(T param)
         {
             return param.ToString();
-
-            Long64
         }
 
         private class Person : IComparable

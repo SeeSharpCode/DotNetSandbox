@@ -26,16 +26,38 @@ namespace Sandbox.Tests
             Assert.AreEqual("HEY", myString);
         }
 
+        [TestMethod]
+        public void Immutable()
+        {
+            Mutable mutable = new Mutable(1);
+            Person person = new Person("test", 1, mutable);
+            mutable.A = 23;
+
+            Assert.AreEqual(person.Mutable.A, 1);
+        }
+
         private class Person
         {
             // Can't touch this (na na na na)
             public string Name { get; }
             public int Age { get; }
+            public Mutable Mutable { get; }
 
-            public Person(string name, int age)
+            public Person(string name, int age, Mutable mutable)
             {
                 Name = name;
                 Age = age;
+                Mutable = mutable;
+            }
+        }
+
+        private class Mutable
+        {
+            public int A { get; set; }
+
+            public Mutable(int a)
+            {
+                A = a;
             }
         }
     }

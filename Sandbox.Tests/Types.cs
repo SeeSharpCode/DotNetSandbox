@@ -29,13 +29,15 @@ namespace Sandbox.Tests
             ChangePersonAge(person1);
 
             // Since the person argument held the same object reference as person1, person1 recognized the age change.
-            Assert.AreEqual(2, person1.Age);
+            Assert.AreEqual(37, person1.Age);
         }
 
         private void ChangePersonAge(Person person)
         {
+            Person person1 = person;
+            person1.Age = 37;
             // person = new Person(); // would case the test to fail
-            person.Age = 2;
+            // person.Age = 2;
         }
 
         [TestMethod]
