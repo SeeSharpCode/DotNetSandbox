@@ -1,0 +1,44 @@
+﻿<Window x:Class="Sandbox.Wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sandbox.Wpf"
+        xmlns:viewModels="clr-namespace:Sandbox.Wpf.ViewModels"
+        mc:Ignorable="d"
+        x:Name="myWindow"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <viewModels:ViewModel />
+    </Window.DataContext>
+    <Window.Resources>
+        <XmlDataProvider x:Key="MockList"   XPath="/MockObjects/*" >
+            <x:XData >
+                <MockObjects xmlns="">
+                    <MockObject Foo="true" Bar="ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" />
+                    <MockObject Foo="false" Bar="1fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff2313" />
+                    <MockObject Foo="true" Bar="ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffHey" />
+                </MockObjects>
+            </x:XData>
+        </XmlDataProvider>
+    </Window.Resources>
+    <Grid DataContext="{Binding Source={StaticResource MockList}}">
+        <!--<DataGrid x:Name="dataGrid" ItemsSource="{Binding Customers}">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Add Column" Command="{Binding AddColumn}"/>
+                    <MenuItem Header="Remove Column" Command="{Binding RemoveColumn}"
+                              CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.CurrentColumn.DisplayIndex}" />
+                    --><!--CommandParameter="{Binding ElementName=dataGrid, Path=SelectedCells.Count}"/>--><!--
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>-->
+        <DataGrid x:Name="dataGrid" ItemsSource="{Binding Mode=Default, XPath=/MockObjects/MockObject}" 
+                  AutoGenerateColumns="False" Width="300" SelectiveScrollingGrid.SelectiveScrollingOrientation="None" >
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Header="Foo" Binding="{Binding XPath=@Foo}" Width="30" />
+                <DataGridTextColumn Header="Bar" Binding="{Binding XPath=@Bar}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
