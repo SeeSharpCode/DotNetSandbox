@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script type="text/javascript">
+    // Waiting on the window to load so that the clickMeButton has been loaded in.
+    // Not ideal becaues the DOM could be loaded before this, but the JavaScript won't execute until the entire page is loaded
+    // which could be an issue if there are large image files or resources on the page.
+    // window.onload = function() {
+    //   // var clickMebutton = document.getElementById('clickMe');
+    //   // clickMebutton.onclick = runTheExample;
+    //   document.getElementById('clickMe').onclick = runTheExample;
+    // }
+
+    document.getElementById('clickMe').onclick = runTheExample;
+
+    function runTheExample() {
+      alert('running the example');
+    }
+
+    // function runTheExample() {
+    //   var myElement = document.getElementById('second');
+    //   var myNodeName = myElement.nodeName;
+    //   // alert(myNodeName);
+    //
+    //   if (myElement !== null) {
+    //     // Bob says to use innerHTML with caution.
+    //     // It was never a standard supported by all browsers.
+    //     // jQuery offers better alternatives.
+    //     // alert(myElement.innerHTML);
+    //     myElement.innerHTML = 'Hey, you clicked the button';
+    //   }
+    //
+    //   var listOfParagraphs = document.getElementsByTagName('p');
+    //   // alert(listOfParagraphs.length + " paragraphs.");
+    //
+    //   var secondParagraph = listOfParagraphs[1];
+    //   // alert(secondParagraph.innerHTML);
+    //
+    //   // myElement.childNodes[0];
+    //   // myElement.firstChild; myElement.lastChild;
+    //   // myElement.nextSibling; myElement.previousSibling;
+    //
+    //   // alert(myElement.parentNode.nodeName);
+    //
+    //   var anchor = document.getElementById('myAnchor');
+    //   // var anchorDestination = anchor.href;
+    //   // alert(anchorDestination);
+    //
+    //   // anchor.href = "http://bing.com"; // May not work in some old browsers.
+    //   anchor.setAttribute('href', 'http://learnvisualstudio.net');
+    //   alert(anchor.getAttribute('href'));
+    // }
+  </script>
+</head>
+<body>
+  <div id="form">
+    <p id="first">Hey</p>
+    <p id="second">Friend</p>
+    <!-- Nothing happens here because the script loads before the button element it relies on. -->
+    <!-- <script type="text/javascript">
+      document.getElementById('clickMe').onclick = runTheExample;
+    </script> -->
+    <input type="submit" id="clickMe" value="Click Me" />
+    <br />
+    <script type="text/javascript">
+      document.getElementById('clickMe').onclick = runTheExample;
+    </script>
+    <a href="http://www.google.com" id="myAnchor">Google!</a>
+  </div>
+</body>
+</html>

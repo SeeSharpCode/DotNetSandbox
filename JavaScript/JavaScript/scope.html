@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Scope</title>
+  <script type="text/javascript">
+    // Block-level scope doesn't exist, so x is global because it isn't inside a function.
+    if (true) {
+      var x = 5;
+    }
+    alert(x);
+
+    // Global scope.
+    var myScope = "global";
+
+    (function() {
+      // Block scope doesn't exist. Bubbles up to function scope.
+      if (true) {
+        var myScope = "function";
+      }
+
+      // Function scope. Also overrides the global myScope variable inside this function.
+      // var myScope = "function";
+
+      // Reassigning the value of the global scope.
+      // myScope = "Overriding this inside the function."
+      alert('inside the function, the scope is: ' + myScope);
+
+      // Omitting var makes this go from function scope to global scope.
+      globalScopeInsideFunction = "Bob";
+    })();
+
+    alert('outside the function, the scope is: ' + myScope);
+
+    // window = global scope
+    alert('window.myScope ' + window.myScope);
+    alert('window.globalScopeInsideFunction ' + window.globalScopeInsideFunction);
+    // alert(globalScopeInsideFunction);
+  </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script type="text/javascript">
+  // There are no classes in JavaScript.
+
+  var elevator = {
+    currentFloor: 3,
+    move: function(direction, levels) {
+      if (direction === "down") {
+        // Use the 'this' keyword when accessing an object's properties.
+        var newFloor = this.currentFloor - levels;
+      } else {
+        newFloor = this.currentFloor + levels;
+      }
+
+      document.write("Going " + direction + " " + levels + " levels.");
+    }
+  };
+
+  elevator.move("down", 2);
+
+  var utilities = {
+    printAllMembers: function(targetObject) {
+      for (i in targetObject) {
+        document.write("<br />" + targetObject[i]);
+      }
+    }
+  }
+
+  utilities.printAllMembers(elevator);
+
+  var emptyObject = { };
+  utilities.printAllMembers(emptyObject);
+
+  // More complex object containing another object and an array of objects.
+  var planet = {
+    id: 34,
+    name: "Earth",
+    sun: {
+      id: 1,
+      name: "Big Yellow Ball",
+      shine: function() {
+        document.write("<br /> This sun is shining.");
+      }
+    },
+    continents: [
+      { name: "North America" },
+      { name: "Europe" }
+    ]
+  };
+
+  planet.sun.shine();
+
+  for (i in planet.continents) {
+    document.write("<br /> " + planet.continents[i].name);
+  }
+
+  // Safety check in case this property has already been defined for planet.
+  if (typeof planet.size === "undefined") {
+    planet.size = "Huge!";
+  }
+
+  document.write("<br/>" + planet.size);
+
+  for (member in planet) {
+    document.write("<br/>" + member + " ==> " + planet[member])
+  }
+
+  function car(make, model, year) {
+    this.make = make;
+    this.model = model;
+    this.year = year;
+  }
+
+  var myOldCar = new car("Ford", "Mustang", 1997);
+  var myNewCar = new car("Kia", "Spectra", 2004);
+
+  document.write("<br/>" + myOldCar.make);
+  </script>
+</head>
+<body>
+</body>
+</html>
