@@ -9,7 +9,7 @@ import java.util.prefs.Preferences;
 
 import static org.junit.Assert.assertEquals;
 
-public class EnterprisePreferencesTest {
+public class EnterprisePreferences {
     @Before
     public void setUp() throws Exception {
         System.setProperty("runtime.environment", "TEST");
