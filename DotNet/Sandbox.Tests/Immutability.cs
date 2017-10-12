@@ -31,9 +31,11 @@ namespace Sandbox.Tests
         {
             Mutable mutable = new Mutable(1);
             Person person = new Person("test", 1, mutable);
+
+            // The caller still holds a reference to the state of mutable, so Person isn't entirely immutable.
             mutable.A = 23;
 
-            Assert.AreEqual(person.Mutable.A, 1);
+            Assert.AreEqual(person.Mutable.A, 23);
         }
 
         private class Person
